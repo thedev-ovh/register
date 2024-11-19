@@ -11,7 +11,7 @@ Welcome to **thedev.ovh**! We provide free subdomains with easy-to-use DNS manag
 ## How to Use
 
 ### Step 1: Fork the Repository
-1. Visit our [GitHub repository](https://github.com/thedev-ovh)
+1. Visit our [GitHub repository](https://github.com/thedev-ovh/register)
 2. Click the **Fork** button in the top right to make your own copy of the repository.
 
 ### Step 2: Create Your Subdomain Configuration

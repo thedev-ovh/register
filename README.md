@@ -31,7 +31,7 @@ Welcome to **thedev.ovh**! We provide free subdomains with easy-to-use DNS manag
     "A":     ["1.0.0.1", "1.0.0.2"],
     "AAAA":  ["2000:db8::1", "2000:db8::2"],
     "CNAME": ["example.com"],
-    "MX": ["mail1.example.com", "mail2.example.com"],
+    "MX":    ["mail1.example.com", "mail2.example.com"],
     "TXT":   ["v=spf1 include:_spf.example.com ~all"]
   },
 

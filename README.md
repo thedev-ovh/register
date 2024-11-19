@@ -38,6 +38,8 @@ Welcome to **thedev.ovh**! We provide free subdomains with easy-to-use DNS manag
   "proxied": true
 }
 
+```
+
 **Note:** Please remove the "," at the end of the `.json` file when ending the record.
 
 `"A":     ["1.0.0.1", "1.0.0.2"]`

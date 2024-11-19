@@ -1,6 +1,6 @@
 var REG_NONE = NewRegistrar("none");
 var DNS_BIND = NewDnsProvider("cloudflare");
-var DOMAIN_NAME = "thedev.ovh"
+var DOMAIN_NAME = "thedev.ovh";
 
 function createSubdomainsObject(jsonsPath) {
   var domains = [];
@@ -25,13 +25,13 @@ function createSubdomainsObject(jsonsPath) {
 }
 
 // Create an object of all JSONs
-var subdomains = createSubdomainsObject('./domains')
+var subdomains = createSubdomainsObject('./domains');
 
 var records = [];
 // Parse all JSON files and generate DNS resource records for DNSControl
 for (var i = 0; i < subdomains.length; i++) {
-  var subdomainData = subdomains[i].data
-  var subdomain = subdomainData.subdomain
+  var subdomainData = subdomains[i].data;
+  var subdomain = subdomainData.subdomain;
   var proxy = subdomainData.proxied ? { "cloudflare_proxy": "on" } : { "cloudflare_proxy": "off" };
 
   // A Records
@@ -48,7 +48,7 @@ for (var i = 0; i < subdomains.length; i++) {
   }
   // CNAME Records
   if (subdomainData.records.CNAME) {
-      records.push(CNAME(subdomain, subdomainData.records.CNAME + ".", proxy));
+    records.push(CNAME(subdomain, subdomainData.records.CNAME + ".", proxy));
   }
   // MX Records
   if (subdomainData.records.MX) {
@@ -65,4 +65,4 @@ for (var i = 0; i < subdomains.length; i++) {
 }
 
 // Create DNS entries using DNSControl's D() function
-D(DOMAIN_NAME, REG_NONE, DnsProvider(DNS_BIND), records);
+D(DOMAIN_NAME, REG_NONE, DnsProvider(DNS_BIND), records, { no_ns: 'true' });

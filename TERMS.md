@@ -1,4 +1,4 @@
-Terms of Service for thedev.ovh
+# Terms of Service
 
 Effective Date: 19/11/2024
 

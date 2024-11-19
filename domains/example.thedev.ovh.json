@@ -6,9 +6,8 @@
   "description": "Example page of thedev.ovh test",
 
   "records": {
-    "NS": [
-      "ns1.desec.io",
-      "ns2.desec.org"
+    "A": [
+      "76.76.21.21"
     ]
   },
   "proxied": true

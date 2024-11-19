@@ -29,7 +29,7 @@ function verifySubdomainMatch(subdomain, filePath) {
 }
 
 function verifyFileFormat(fileName) {
-    const pattern = /^(@|_dmarc|[a-zA-Z0-9\-]+|purelymail[1-3]\._domainkey)\.thedev\.me\.json$/; // Expression to validate file name.
+    const pattern = /^(@|_dmarc|[a-zA-Z0-9\-]+|purelymail[1-3]\._domainkey)\.thedev\.ovh\.json$/; // Expression to validate file name.
 
     // Special cases that should bypass the 4-part check. Important for the main domain and for email support
     const specialCases = ["@", "_dmarc", "purelymail1._domainkey", "purelymail2._domainkey", "purelymail3._domainkey"];

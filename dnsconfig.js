@@ -1,6 +1,6 @@
 var REG_NONE = NewRegistrar("none");
 var DNS_BIND = NewDnsProvider("cloudflare");
-var DOMAIN_NAME = "thedev.me"
+var DOMAIN_NAME = "thedev.ovh"
 
 function createSubdomainsObject(jsonsPath) {
   var domains = [];
@@ -49,12 +49,6 @@ for (var i = 0; i < subdomains.length; i++) {
   // CNAME Records
   if (subdomainData.records.CNAME) {
       records.push(CNAME(subdomain, subdomainData.records.CNAME + ".", proxy));
-  }
-  // NS Records
-  if (subdomainData.records.NS) {
-    for (var ns in subdomainData.records.NS) {
-      records.push(NS(subdomain, subdomainData.records.NS[ns] + "."));
-    }
   }
   // MX Records
   if (subdomainData.records.MX) {

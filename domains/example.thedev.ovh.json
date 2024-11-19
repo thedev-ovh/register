@@ -1,0 +1,15 @@
+{
+  "subdomain": "example",
+  "domain": "thedev.ovh",
+  "public_email": "demo3546.us@gmail.com",
+  "github_username": "JoshMaster404",
+  "description": "Example page of thedev.ovh test",
+
+  "records": {
+    "NS": [
+      "ns1.desec.io",
+      "ns2.desec.org"
+    ]
+  },
+  "proxied": true
+}

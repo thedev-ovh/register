@@ -1,6 +1,6 @@
 Terms of Service for thedev.ovh
 
-Effective Date: [Insert Date]
+Effective Date: 19/11/2024
 
 Welcome to thedev.ovh, a free subdomain service designed to provide users with subdomains for personal, educational, and development purposes. By accessing or using the services provided by thedev.ovh, you agree to be bound by the following terms and conditions.
 

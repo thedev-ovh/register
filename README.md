@@ -42,7 +42,7 @@ Welcome to **thedev.ovh**! We provide free subdomains with easy-to-use DNS manag
 
 **Note:**
 1. We do not support NS record.
-2. Please follow our Terms - (https://github.com/thedev-ovh/register/TERMS.md)
+2. Please follow our [Terms] (https://github.com/thedev-ovh/register/TERMS.md)
 3. Please remove the "," at the end of the `.json` file when ending the record.
 
 `"A":     ["1.0.0.1", "1.0.0.2"]`

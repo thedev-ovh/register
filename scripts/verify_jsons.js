@@ -8,7 +8,7 @@ function isValidEmail(email) {
 }
 
 // Verify subdomain names match in both file name and in JSON content.
-function verifySubdomainMatch(subdomain, filePath) {    
+function verifySubdomainMatch(subdomain, filePath) {
     const fileName = path.basename(filePath);
     const fileNameSubdomain = fileName.split('.')[0];
 
@@ -29,14 +29,14 @@ function verifySubdomainMatch(subdomain, filePath) {
 }
 
 function verifyFileFormat(fileName) {
-    const pattern = /^(@|_dmarc|[a-zA-Z0-9\-]+|purelymail[1-3]\._domainkey)\.thedev\.ovh\.json$/; // Expression to validate file name.
+    const pattern = /^(@|_dmarc|[a-zA-Z0-9\-]+|purelymail[1-3]\._domainkey)\.thedev\.ovh\.json$/; // Updated for thedev.ovh
 
     // Special cases that should bypass the 4-part check. Important for the main domain and for email support
     const specialCases = ["@", "_dmarc", "purelymail1._domainkey", "purelymail2._domainkey", "purelymail3._domainkey"];
 
     // Check if the file name matches any of the special cases
     for (let i = 0; i < specialCases.length; i++) {
-        if (fileName.startsWith(specialCases[i] + ".thedev.me.json")) {
+        if (fileName.startsWith(specialCases[i] + ".thedev.ovh.json")) {
             return pattern.test(fileName);
         }
     }
@@ -67,17 +67,17 @@ function isValidDomain(domain) {
 function validateJson(jsonData, filePath) {
     const errors = [];
 
-    // Validate JSON name format (subdomainName.thedev.me.json)
+    // Validate JSON name format (subdomainName.thedev.ovh.json)
     const fileName = path.basename(filePath);
     if (!verifyFileFormat(fileName)) {
         console.log(fileName)
-        errors.push(`:ERROR: Only third-level domains are supported. Rename your JSON to this format: 'SUBDOMAIN.thedev.me.json'.`);
+        errors.push(`:ERROR: Only third-level domains are supported. Rename your JSON to this format: 'SUBDOMAIN.thedev.ovh.json'.`);
     }
 
     // Validate subdomain
     const subdomain = jsonData.subdomain || '';
     if (!subdomain) {
-        errors.push(':ERROR: Subdomain is empty.'); 
+        errors.push(':ERROR: Subdomain is empty.');
     } else if (subdomain.includes('*')) {
         errors.push(':ERROR: Subdomain cannot contain wildcards.');
     } else {
@@ -89,7 +89,7 @@ function validateJson(jsonData, filePath) {
 
     // Validate domain
     const domain = jsonData.domain || '';
-    if (!domain || domain !== "thedev.me") {
+    if (!domain || domain !== "thedev.ovh") {
         errors.push(':ERROR: Domain is invalid.');
     }
 
@@ -100,14 +100,13 @@ function validateJson(jsonData, filePath) {
         if (!isValidEmail(publicEmail)) {
             errors.push(':ERROR: Invalid email in the JSON.');
         }
-    }
-    else if (!contactInfo) {
+    } else if (!contactInfo) {
         errors.push(':ERROR: Please provide your contact info in the JSON.');
     }
 
     // Validate GitHub user
     const github_username = jsonData.github_username || '';
-    if (!github_username ) {
+    if (!github_username) {
         errors.push(':ERROR: Please provide your GitHub username in the JSON.');
     }
 
@@ -121,11 +120,11 @@ function validateJson(jsonData, filePath) {
 
     // Validate records
     const records = jsonData.records || {};
-    // Check typeof 
+    // Check typeof
     if (typeof records !== 'object') {
         errors.push(':ERROR: Records must be an object.');
     } else {
-        const validRecordTypes = ['A', 'AAAA', 'CNAME', 'NS', 'MX', 'TXT'];
+        const validRecordTypes = ['A', 'AAAA', 'CNAME', 'MX', 'TXT']; // Removed 'NS'
 
         for (const [type, values] of Object.entries(records)) {
             if (!validRecordTypes.includes(type)) {
@@ -152,9 +151,8 @@ function validateJson(jsonData, filePath) {
                             errors.push(`:ERROR: Invalid AAAA record (IPv6 expected): ${value}`);
                         }
                         break;
-                    // CNAME, NS, and MX check
+                    // CNAME and MX check
                     case 'CNAME':
-                    case 'NS':
                     case 'MX':
                         if (!isValidDomain(value)) {
                             errors.push(`:ERROR: Invalid ${type} record: ${value}. Must be a valid domain. Remove 'http://' or 'https://', do not trail with '/'`);
@@ -211,9 +209,9 @@ function main() {
         }
 
         return allFiles;
-    }  
+    }
 
-    const allFiles = getAllFiles(domainsPath);    
+    const allFiles = getAllFiles(domainsPath);
     let allErrors = [];
 
     // Validate each JSON file

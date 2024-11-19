@@ -40,7 +40,10 @@ Welcome to **thedev.ovh**! We provide free subdomains with easy-to-use DNS manag
 
 ```
 
-**Note:** Please remove the "," at the end of the `.json` file when ending the record.
+**Note:**
+1. We do not support NS record.
+2. Please follow our Rules
+2. Please remove the "," at the end of the `.json` file when ending the record.
 
 `"A":     ["1.0.0.1", "1.0.0.2"]`
 

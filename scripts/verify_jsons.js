@@ -63,7 +63,6 @@ function validateJson(jsonData, filePath) {
 
     const fileName = path.basename(filePath);
     if (!verifyFileFormat(fileName)) {
-        console.log(fileName)
         errors.push(`:ERROR: Only third-level domains are supported. Rename your JSON to this format: 'SUBDOMAIN.thedev.ovh.json'.`);
     }
 
@@ -189,11 +188,16 @@ function main() {
     let allErrors = [];
 
     allFiles.forEach(filePath => {
-        const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-        const errors = validateJson(jsonData, filePath);
+        try {
+            const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+            const errors = validateJson(jsonData, filePath);
 
-        if (errors.length > 0) {
-            allErrors = allErrors.concat(errors.map(error => `File: ${filePath} - ${error}`));
+            if (errors.length > 0) {
+                allErrors = allErrors.concat(errors.map(error => `File: ${filePath} - ${error}`));
+            }
+        } catch (err) {
+            console.error(`File: ${filePath} - :ERROR: Invalid JSON format or file is empty.`);
+            allErrors.push(`File: ${filePath} - :ERROR: Invalid JSON format or file is empty.`);
         }
     });
 

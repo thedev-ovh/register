@@ -3,7 +3,7 @@
   "domain": "thedev.ovh",
   "email_or_discord": "admin@thedev.ovh",
   "github_username": "thedev-ovb",
-  "description": "Github Page",
+  "description": "thedev.ovh official home page",
 
   "records": {
     "A":     ["185.199.108.153", "185.199.110.153"]
